@@ -1,0 +1,16 @@
+<template>
+    <lightning-card title="Conditional Rendering Example" icon-name="standard:user">
+        <div class="slds-m-around_medium">
+            <template if:true={isSystemAdministrator}>
+                <div class="slds-m-vertical_medium">
+                    Welcome, you are a System Administrator!
+                </div>
+            </template>
+            <template if:false={isSystemAdministrator}>
+                <div class="slds-m-vertical_medium">
+                    Welcome, you are a Business User!
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>

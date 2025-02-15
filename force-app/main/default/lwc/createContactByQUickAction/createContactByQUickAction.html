@@ -1,0 +1,22 @@
+<template>
+    <lightning-card>
+        <h3 slot="title">
+            <lightning-icon icon-name="standard:Contact" size="small"></lightning-icon>           
+        </h3>
+        <p class="slds-p-horizontal_small">
+            <lightning-input type="text" label="FIRSTNAME" value={accountRecord.FIRSTNAME} onchange={handleNameChange}></lightning-input>
+                    </p>
+
+ <p class="slds-p-horizontal_small">
+ <lightning-input type="text" label="LASTNAME" value={accountRecord.LASTNAME} onchange={handleNameChange}></lightning-input>
+         </p>
+ 
+ <p class="slds-p-horizontal_small">
+ <lightning-input type="text" label="Phone" value={accountRecord.Phone} onchange={handlePhoneChange}></lightning-input>
+         </p>
+ <br/>
+         <div slot="footer">
+             <lightning-button label="Create Account" onclick={handleSaveAccount} variant="brand"></lightning-button>
+         </div>
+ </lightning-card> 
+</template>

@@ -1,0 +1,17 @@
+<template>
+    <lightning-card icon-name="standard:case" title="Case">
+        <lightning-datatable
+                    key-field="id"
+                    data={CaseRec}
+                    columns={CaseColumns}>
+            </lightning-datatable>
+            </lightning-card>
+    
+            <lightning-card icon-name="standard:contact" title="Contact">
+                <lightning-datatable
+                key-field="id"
+                data={ContactRec}
+                columns={ContactColumns}>
+        </lightning-datatable>
+        </lightning-card>
+</template>
