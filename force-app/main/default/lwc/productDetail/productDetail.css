@@ -1,0 +1,30 @@
+.field-label {
+    font-weight: bold;
+    color: #1a1a1a;
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+}
+
+.field-value {
+    background-color: #f3f2f2;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    color: #333;
+    box-shadow: inset 0 0 1px #ccc;
+}
+.field-label {
+    font-weight: bold;
+    color: #1a1a1a;
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+}
+
+.field-value {
+    background-color: #f3f2f2;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    color: #333;
+    box-shadow: inset 0 0 1px #ccc;
+}

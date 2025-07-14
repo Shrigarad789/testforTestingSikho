@@ -1,0 +1,9 @@
+<template>
+    <lightning-button label="Update Price" onclick={handleUpdatePrice} class="slds-m-around_medium"></lightning-button>
+    <template if:true={isLoading}>
+        <lightning-spinner alternative-text="Updating Price" size="small" class="slds-m-around_medium"></lightning-spinner>
+    </template>
+    <template if:true={errorMessage}>
+        <div class="slds-text-color_error">{errorMessage}</div>
+    </template>
+</template>

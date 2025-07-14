@@ -1,0 +1,19 @@
+.modal-body{
+    height : 500px !important;
+    max-height: 500px !important;
+
+}
+.slds-modal__container{
+    max-width: 80rem !important;
+    width: 80rem !important;
+    height : 200rem !important;
+    max-height: 200rem !important;
+
+}
+
+.slds-form-element__label {
+    display : none !important;
+}
+.slds-table .slds-truncate {
+    white-space: normal; /* Allow text to wrap */
+}

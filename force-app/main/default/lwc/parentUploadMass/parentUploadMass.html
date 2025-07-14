@@ -1,0 +1,18 @@
+<template>
+    <div class="cart-container">
+        <!-- Cart Logo and Toggle Button -->
+        <c-my-cart-logo count={cartCount} ontogglecart={toggleCartView} class="cart-logo"></c-my-cart-logo>
+
+        <!-- Mass Upload Component -->
+        <div class="upload-section">
+            <c-upload-mass onexcelparsed={handleExcelParsed} oncartupdated={handleCartUpdated}></c-upload-mass>
+        </div>
+
+        <!-- Conditional Cart View -->
+        <template if:true={showCart}>
+            <div class="cart-view-container">
+                <c-my-cart-view cart-items={cartItems} oncartupdated={handleCartUpdated} class="cart-view"></c-my-cart-view>
+            </div>
+        </template>
+    </div>
+</template>

@@ -1,0 +1,64 @@
+<template>
+    <lightning-card title="Product Detail">
+        <div class="slds-p-around_medium">
+
+            <!-- Buttons: Back on left, Update Price on right -->
+            <div class="slds-grid slds-grid_align-spread slds-m-bottom_medium">
+                <lightning-button 
+                   variant="brand"
+                    label="Back" 
+                    onclick={handleBack}>
+                </lightning-button>
+
+                <lightning-button 
+                    label="Update Price from External API"
+                    variant="brand"
+                    onclick={handleUpdatePrice}>
+                </lightning-button>
+            </div>
+
+            <!-- Product Info -->
+            <template if:true={product}>
+                <div class="slds-box slds-theme_default slds-p-around_medium">
+                    <div class="slds-grid slds-wrap slds-gutters">
+                        <div class="slds-col slds-size_1-of-2">
+                            <p class="field-label">Product Name</p>
+                            <p class="field-value">{product.Name}</p>
+                        </div>
+
+                        <div class="slds-col slds-size_1-of-2">
+                            <p class="field-label">Price</p>
+                            <p class="field-value">₹{product.Price_c__c}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add to Cart & Buy Now Buttons -->
+                <div class="slds-grid slds-gutters slds-m-top_medium">
+                    <div class="slds-col">
+                        <lightning-button 
+                            label="Add to Cart"
+                            variant="success"
+                            class="custom-add-button"
+                            onclick={handleAddToCart}>
+                        </lightning-button>
+                    </div>
+                    <div class="slds-col">
+                        <lightning-button 
+                            label="Buy Now"
+                            variant="destructive"
+                            class="custom-buy-button"
+                            onclick={handleBuyNow}>
+                        </lightning-button>
+                    </div>
+                </div>
+            </template>
+
+            <template if:false={product}>
+                <p class="slds-text-color_error slds-m-top_medium">
+                    Product data is not available.
+                </p>
+            </template>
+        </div>
+    </lightning-card>
+</template>

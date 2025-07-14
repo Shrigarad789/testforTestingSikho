@@ -1,0 +1,24 @@
+<template>
+    <div>
+        <lightning-card  variant="Narrow"  title="Hello" icon-name="standard:account">
+            <lightning-button-icon  icon-name="utility:down" variant="border-filled" alternative-text="Show More" slot="actions"></lightning-button-icon>
+            <p class="slds-p-horizontal_small">{Intro_msg}</p>
+            <p slot="footer">{website}</p>
+        </lightning-card>
+    </div>
+
+    <div>
+        <lightning-card  variant="Narrow"  title="Admission Form" icon-name="standard:account">
+            <lightning-button-icon  icon-name="utility:down" variant="border-filled" alternative-text="Show More" slot="actions"></lightning-button-icon>
+            <div class="slds-p-horizontal_small">
+                <lightning-input type="text" label="Enter Name" placeholder="type here..." disabled></lightning-input>
+            </div>
+            <div class="slds-p-horizontal_small">
+            <lightning-input type="date" name="input4" label="Date field with placeholder" placeholder="type here..."></lightning-input>
+    </div>
+        </lightning-card>
+    </div>
+<div>
+    <lightning-button variant="success" label="Success" title="Successful action" onclick={handleClick} class="slds-m-left_x-small"></lightning-button>
+    </div>
+</template>

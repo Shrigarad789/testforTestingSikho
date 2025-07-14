@@ -1,0 +1,11 @@
+<template>
+    <H1>Hi</H1>
+    <div class="slds-p-around_medium">
+        <lightning-input label="Name" value={name} onchange={handleNameChange}></lightning-input>
+        <lightning-input label="Phone" value={phone} onchange={handlePhoneChange}></lightning-input>
+        <lightning-input label="Email" value={email} onchange={handleEmailChange}></lightning-input>
+        
+        <!-- Submit Button -->
+        <lightning-button label="Submit" onclick={handleSubmit}></lightning-button>
+    </div>
+</template>

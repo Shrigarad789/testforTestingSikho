@@ -1,0 +1,17 @@
+<template>
+    <lightning-card title="I am Listening" icon-name="utility:user">
+        <div class="slds-var-m-bottom_small">
+            //search name ki 1 field hai agar usme type kiya to method call karengi
+            // or us value ko read karne ka kam ye method karengi
+          <lightning-input type="serach" onchange={HandleKeyChange} class="slds-m-bottom_small" label="Search">
+<template for:each={serviceList} for:item="h">
+    <lightning-layout vertical-align="center" key={h.id}>
+        <li>
+            {h.name}
+        </li>
+    </lightning-layout>
+</template>
+          </lightning-input>      
+         </div>
+</lightning-card>
+</template>

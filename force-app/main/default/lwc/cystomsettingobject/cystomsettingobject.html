@@ -1,0 +1,31 @@
+<template>
+<div class="tabset slds-tabs_card  uiTabset--dense uiTabset">
+<lightning-tabset>
+     <template if:true={salesDashboard}>
+ <lightning-tab label="Sales Reporting Tool" >
+            <iframe
+                src={url}
+                height={height}
+                width={width}
+                referrerpolicy={referrerPolicy}
+                sandbox={sandbox}
+                title="iFrame"
+            ></iframe>
+        </lightning-tab>
+        </template >
+     <template if:true={drmsReportingTool}> 
+         <lightning-tab label="DRMS Reporting Tool" title="2nd tab extended title">
+                <iframe
+                    src={url1}
+                    height={height}
+                    width={width}
+                    referrerpolicy={referrerPolicy}
+                    sandbox={sandbox}
+                    title="iFrame"
+                ></iframe>
+            </lightning-tab>
+</template >
+    </lightning-tabset>
+
+</div>
+</template>

@@ -1,0 +1,17 @@
+<template>
+    <lightning-card title="Product List" class="custom-card">
+        <div class="myTable">
+            <lightning-input type="search" label="Search Products" class="slds-p-around_x-small search-input" onchange={handleSearch}></lightning-input>
+        </div>
+
+        <template if:true={products}>
+            <div class="slds-scrollable slds-scrollable_x">
+                <lightning-datatable key-field="Id" data={products} columns={columns}
+                                     hide-checkbox-column="true"
+                                     class="slds-table slds-table_bordered slds-table_col-bordered slds-table_striped slds-max-medium-table_stacked-horizontal"
+                                     show-row-number-column="true" onrowaction={handleRowAction}>
+                </lightning-datatable>
+            </div>
+        </template>
+    </lightning-card>
+</template>

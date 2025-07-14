@@ -1,54 +1,189 @@
 <template>
-    <lightning-quick-action-panel header="Manage Contacts">
-        <div class="slds-p-around_none slds-m-top_x-small slds-m-bottom_medium slds-m-horizontal_none modalBodyy">
-             <template if:true={isLoading}>
-                <lightning-spinner alternative-text="Loading" size="medium" class="spinnerClass"></lightning-spinner>
-             </template>
-             <lightning-card>
-                 <lightning-button label="Add Row" slot="actions" icon-name="utility:add" onclick={addRow}></lightning-button>
-                <div class="slds-m-around_medium">
-                    <table class="slds-table slds-table_cell-buffer slds-table_bordered" aria-labelledby="element-with-table-label other-element-with-table-label">
-                        <thead>
-                            <tr class="slds-line-height_reset">
-                                <th class="" scope="col">
-                                    <div class="slds-truncate" title="First Name">First Name</div>
-                                </th>
-                                <th class="" scope="col">
-                                    <div class="slds-truncate" title="Last Name">Last Name</div>
-                                </th>
-                                <th class="" scope="col">
-                                    <div class="slds-truncate" title="Email">Email</div>
-                                </th>
-                                <th class="" scope="col">
-                                    <div class="slds-truncate" title="Stage">Action</div>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <template for:each={records} for:item="obj">
-                                <tr class="inputRows" key={obj.Id}>
-                                    <th data-label="Opportunity Name" scope="row">
-                                        <lightning-input type="text" class="fields" variant="label-hidden" label="First Name" name="FirstName" value={obj.FirstName} data-id={obj.Id} onchange={updateValues}></lightning-input>
-                                    </th>
-                                    <td data-label="Account Name">
-                                        <lightning-input type="text" class="fields" variant="label-hidden" label="Last Name" name="LastName" value={obj.LastName} data-id={obj.Id} onchange={updateValues}></lightning-input>
-                                    </td>
-                                    <td data-label="Close Date">
-                                       <lightning-input type="text" class="fields" variant="label-hidden" label="Email" name="Email" value={obj.Email} data-id={obj.Id} onchange={updateValues}></lightning-input>
-                                    </td>
-                                    <td data-label="Prospecting">
-                                        <lightning-button-icon icon-name="action:delete"  alternative-text="Delete" title="Delete" data-id={obj.Id} onclick={handleDeleteAction}></lightning-button-icon>
-                                    </td>
-                                </tr>
-                            </template>
-                        </tbody>
-                    </table>
-                </div>
-            </lightning-card>
-        </div>
-        <div slot="footer">
-            <lightning-button variant="neutral" label="Cancel" onclick={closeAction}></lightning-button> &nbsp;
-            <lightning-button variant="brand" label="Save" onclick={handleSaveAction} disabled={isDisable}></lightning-button>
-        </div>
-    </lightning-quick-action-panel>
+    <lightning-card>
+
+        <div class="slds-p-around_medium lgc-bg">
+
+    <lightning-tile type="media">
+
+        <lightning-icon slot="media" icon-name="standard:contact"></lightning-icon>
+
+        <p class="slds-truncate"><b>Contacts({records})</b></p>
+
+        <lightning-button class='slds-float_right' label="New" onclick={handleOpenModal}></lightning-button>
+
+    </lightning-tile>
+
+</div>
+
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+
+        <thead>
+
+            <tr class="slds-line-height_reset">
+
+            <th class="" scope="col">
+
+                <div class="slds-truncate" title="⌗"></div>
+
+                </th>
+
+            <th class="" scope="col">
+
+                <div class="slds-truncate" title="CheckBox"></div>
+
+            </th>
+
+            <th class="" scope="col">
+
+                <div class="slds-truncate" title="Account Name">FirstName</div>
+
+            </th>
+
+            <th class="" scope="col">
+
+                <div class="slds-truncate" title="Phone">LastName</div>
+
+            </th>
+
+            <th class="" scope="col">
+
+                <div class="slds-truncate" title="ParentId">Account</div>
+
+            </th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            <template for:each={data} for:item="item" for:index="index">
+
+            <tr class="slds-hint-parent" key={item.index}>
+
+            <td data-label="CheckBox" >
+
+                <lightning-input type="checkbox" data-index={index} data-value={item.Id} name={item.Id} 
+
+                 onchange={handleCheckbox} checked={item.isChecked} access-key={item.Id} ></lightning-input>
+
+            </td>
+
+            <td data-label="Account Name">
+
+                {item.FirstName}
+
+            </td>
+
+            <td data-label="Phone">
+
+                {item.LastName}
+
+            </td>
+
+            <td data-label="ParentId">
+
+                {item.Account.Name}
+
+            </td>
+
+            </tr>
+
+            </template>
+
+        </tbody>
+
+        </table>
+
+    <template if:true={newCreate}>
+
+        <div class="slds-box slds-theme_shade">  
+
+        <div class="slds-modal slds-fade-in-open slds-backdrop">  
+
+        <div class="slds-modal__container">  
+
+        <!--HEADER Section-->  
+
+        <div class="slds-modal__header">  
+
+        <lightning-button-icon icon-name="utility:close" alternative-text="Close this window" size="large" variant="bare-inverse" onclick={closeModal} class="slds-modal__close"></lightning-button-icon>
+
+        <h2> Create Bulk Accounts..</h2> 
+
+        </div>  
+
+        <!---Body Section--> 
+
+        <div class='container'>
+
+    <template for:each={itemList} for:item="item" for:index="index">
+
+        <lightning-record-edit-form key={item.id} object-api-name="Contact">
+
+            <div >
+
+                <lightning-layout>
+
+                    <lightning-layout-item padding="around-small" size="3">
+
+                        <lightning-input-field field-name="FirstName"></lightning-input-field>
+
+                    </lightning-layout-item>
+
+                    <lightning-layout-item padding="around-small" size="3">
+
+                        <lightning-input-field field-name="LastName"></lightning-input-field>
+
+                    </lightning-layout-item>
+
+                    <lightning-layout-item padding="around-small" size="3">
+
+                        <lightning-input-field field-name="AccountId" value={AccountId}></lightning-input-field>
+
+                    </lightning-layout-item>
+
+                    <lightning-layout-item padding="around-small" size="3">
+
+                        <div class="box1 slds-p-top_large">
+
+                                <lightning-button class='slds-m-right_small slds-m-top_small' access-key={item.id} data-index={index} icon-name="action:new" onclick={addRow} disabled={disableAdd}></lightning-button>
+
+                                <lightning-button icon-name="action:delete" data-index={index} access-key={item.id}
+
+                                onclick={removeRow} disabled={disableDelete}></lightning-button>
+
+                        </div>  
+
+                    </lightning-layout-item>
+
+                </lightning-layout>
+
+            </div>
+
+        </lightning-record-edit-form>
+
+    </template>
+
+            </div> 
+
+            <!--Footer Section-->
+
+            <div class="slds-modal__footer">            
+
+                    <lightning-button label='Cancel' onclick={closeModal} class='slds-m-around_medium'></lightning-button>
+
+                    <lightning-button label="Save" type='submit' variant="brand" onclick={handleSubmit} ></lightning-button>
+
+            </div>
+
+            </div>  
+
+            </div>  
+
+            </div>  
+
+    </template>
+
+        </lightning-card>
 </template>

@@ -1,0 +1,9 @@
+<template>
+   
+    <template if:true={isSuccess}>
+        <lightning-toast message="Price updated successfully!" variant="success"></lightning-toast>
+    </template>
+    <template if:true={isError}>
+        <lightning-toast message="Error updating price" variant="error"></lightning-toast>
+    </template>
+</template>

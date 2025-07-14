@@ -1,0 +1,14 @@
+<template>
+    <lightning-card title="Weather App">
+        <div class="slds-p-around_medium">
+            <!-- Input field for city -->
+            <lightning-input label="Search City" onchange={handleOnChange}></lightning-input>
+<br/>
+            <!-- Button to get weather -->
+            <lightning-button label="Get Weather" onclick={buttonClick}></lightning-button>
+            <br/>
+            <img src={imageURL}/>
+            <b>{condition}</b>
+        </div>
+    </lightning-card>
+</template>

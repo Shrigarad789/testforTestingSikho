@@ -1,0 +1,15 @@
+<template>
+    <lightning-card title="Parent to child component">
+    <lightning-layout>
+        <lightning-layout-item flexibility="auto" padding="around-small">
+            <lightning-input  label="Enter some message" onchange={HnadleChangeEvent}></lightning-input>
+        </lightning-layout-item>
+       
+        <lightning-layout-item flexibility="auto" padding="around-small">
+            <c-ptcchild-component></c-ptcchild-component>
+        </lightning-layout-item>
+
+        
+    </lightning-layout>
+</lightning-card>
+</template>

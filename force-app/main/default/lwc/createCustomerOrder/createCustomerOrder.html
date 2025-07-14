@@ -1,0 +1,28 @@
+<template>
+    <lightning-card title="Create Customer Order">
+        <div class="slds-p-around_medium">
+            <lightning-input label="Full Name" value={fullName} onchange={handleFullNameChange}></lightning-input>
+            <lightning-input label="Phone Number" type="phone" value={phoneNumber} onchange={handlePhoneChange}></lightning-input>
+            <lightning-textarea label="Address" value={address} onchange={handleAddressChange}></lightning-textarea>
+<!-- For Picklist Field  -->
+<lightning-combobox
+name="Country"
+label="Country"
+value={country}
+placeholder="Select Country"
+options={countryOptions}
+onchange={handleCountryChange}>
+</lightning-combobox>
+
+            <lightning-button variant="brand" label="Create Order" onclick={createOrder} class="slds-m-top_medium"></lightning-button>
+
+            <template if:true={recordId}>
+                <p class="slds-text-color_success slds-m-top_medium">Order Created! Record ID: {recordId}</p>
+            </template>
+
+            <template if:true={error}>
+                <p class="slds-text-color_error slds-m-top_medium">Error: {error}</p>
+            </template>
+        </div>
+    </lightning-card>
+</template>

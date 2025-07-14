@@ -1,0 +1,8 @@
+<template>
+    <template if:true={recordId}>
+        <c-product-detail record-id={recordId}></c-product-detail>
+    </template>
+    <template if:false={recordId}>
+        <p>No product selected.</p>
+    </template>
+</template>

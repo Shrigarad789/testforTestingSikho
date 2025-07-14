@@ -1,0 +1,90 @@
+<template>
+    <lightning-quick-action-panel header="Close Campaigns" >
+       
+        <div class="slds-col modal-body scrollable slds-p-around--medium">
+            <div class="slds-page-header">
+                <span class="slds-badge">Selected Campaign Member: {selectedCheckboxCount}</span>
+            </div>
+    
+            <template if:true={isLoading}>
+                <lightning-spinner alternative-text="Loading" size="medium" class="spinner"></lightning-spinner>
+            </template>
+            <template if:false={isLoading}>
+                <table
+                    class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped slds-max-medium-table_stacked-horizontal"
+                    style="width: 100%;">
+                    <thead>
+                        <tr class="slds-text-title--caps">
+                            <th class="slds-text-align--right">
+                                <div class="slds-form-element">
+                                    <div class="slds-form-element__control">
+                                        <label class="slds-checkbox" style="width:3.25rem;">
+                                            <lightning-input type="checkbox" onchange={handleAllSelected}
+                                                data-key="allCheckbox" checked={isChecked}>
+                                            </lightning-input>
+                                        </label>
+                                    </div>
+                                </div>
+                            </th>
+                            <th>
+                                <span class="slds-truncate" title="Campaign Name">Campaign Name</span>
+                            </th>
+                            <th>
+                                <span class="slds-truncate" title="Status">Status</span>
+                            </th>
+                            <th>
+                                <span class="slds-truncate" title="Notes">Notes</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={items} for:item="itm">
+                            <tr key={itm.Id}>
+                                <td scope="row" class="slds-text-align--right" style="width:3.25rem;">
+                                    <div class="slds-form-element">
+                                        <div class="slds-form-element__control">
+                                            <label class="slds-checkbox">
+                                                <lightning-input data-key="firstColumnCheckbox" type="checkbox"
+                                                    onchange={handleCheckboxSelect} value={itm.CampaignIndex}
+                                                    checked={itm.isSelected} accesskey={itm.CampaignIndex}>
+                                                </lightning-input>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td scope="row" style="width:25rem;">
+                                    <div class="slds-truncate" title="itm.CampaignName">
+                                        <lightning-formatted-text value={itm.CampaignName}></lightning-formatted-text>
+                                    </div>
+                                </td>
+                                <td scope="row" style="width:20rem;">
+                                    <div class="slds-truncate" title="Status">
+                                        <lightning-combobox accesskey={itm.CampaignIndex} data-key="requiredStatus" value={itm.Status}
+                                            placeholder="--None--" options={options} class={inputClass}
+                                            onchange={handlePicklistChange} 
+                                            variant="label-hidden">
+                                        </lightning-combobox>
+                                    </div>
+                                </td>
+                                <td scope="row" style="width:20rem;">
+                                    <div class="slds-truncate" onchange={handleTextChange}>
+                                        <lightning-textarea accesskey={itm.CampaignIndex} value={itm.Notes}
+                                            variant="label-hidden">
+                                        </lightning-textarea>
+                                    </div>
+                                </td>
+                            </tr>
+                        </template>
+                        <template if:true={error}>
+                            <div class="error-message">{error.message}</div>
+                        </template>
+                    </tbody>
+                </table>
+            </template>
+        </div>
+        <div slot="footer">
+            <lightning-button class="slds-m-left_x-small" variant="brand" label="Save" onclick={handleSave}>
+            </lightning-button>
+        </div>
+    </lightning-quick-action-panel>
+</template>

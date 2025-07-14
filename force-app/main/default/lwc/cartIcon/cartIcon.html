@@ -1,0 +1,18 @@
+<template>
+    <div class="slds-grid slds-align_absolute-center cart-header">
+        <!-- Left: Shopping Cart Text -->
+        <div class="slds-text-heading_small slds-m-right_small">
+            🛒 Shopping Cart
+        </div>
+
+        <!-- Right: Cart Icon with Count -->
+        <div class="cart-container slds-m-left_auto">
+            <lightning-icon 
+                icon-name="utility:cart" 
+                size="medium" 
+                alternative-text="Cart">
+            </lightning-icon>
+            <span class="cart-count">{itemCount}</span>
+        </div>
+    </div>
+</template>

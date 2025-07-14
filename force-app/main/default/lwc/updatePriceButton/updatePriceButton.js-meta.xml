@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>57.0</apiVersion>
+    <isExposed>true</isExposed>
+    <targets>
+        <target>lightning__RecordAction</target> <!-- Expose this component as a Record Action -->
+        <target>lightning__RecordPage</target>  <!-- Optional, if you also want it available in a record page -->
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__RecordAction">
+            <actionType>ScreenAction</actionType> <!-- This makes the action a screen-based action -->
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

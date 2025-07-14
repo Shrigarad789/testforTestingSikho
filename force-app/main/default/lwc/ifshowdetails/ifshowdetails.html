@@ -1,0 +1,22 @@
+<template>
+    <template if:true = {display}>
+        <lightning-card title = "Enter Information">
+            <div class="slds-m-around_medium">
+                <lightning-input label ="enter name" value ={name} onchange={changeHandler}></lightning-input>
+                <lightning-input label ="enter Session" value ={sess} onchange={sessionHandler}></lightning-input>
+                <lightning-button label ="Commit" onclick={savebutton}></lightning-button>
+            </div>
+        </lightning-card>
+        </template>
+        
+        
+            <template if:false = {display}>
+                <lightning-card title = "Saved Information">  
+                <div class="slds-m-around_medium">
+                    <p>Name : {name}</p>
+                    <p>Interest : {sess}</p>
+                </div>
+                </lightning-card>
+            </template>
+        
+</template>

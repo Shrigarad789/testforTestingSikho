@@ -1,0 +1,36 @@
+<template>
+  <lightning-card title="Create Contract" icon-name="standard:contract">
+      <div class="slds-p-around_medium">
+          <lightning-input class="lightning-input_label"
+              label="Contract Name"
+              value={contractName}
+              onchange={handleNameChange}
+          ></lightning-input>
+
+          <lightning-input class="lightning-input_label"
+              type="date"
+              label="Start Date"
+              value={contractStartDate}
+              onchange={handleDateChange}
+          ></lightning-input>
+
+          <lightning-file-upload class="lightning-input_label"
+              label="Upload Files"
+              name="fileUploader"
+              record-id={recordId}
+              accept={acceptedFormats}
+              multiple
+              onuploadfinished={handleFileUpload}
+          ></lightning-file-upload>
+
+          <div class="button-container">
+            <lightning-button
+                label="Save Contract"
+                onclick={handleSave}
+                variant="success"
+            ></lightning-button>
+        </div>
+        
+      </div>
+  </lightning-card>
+</template>

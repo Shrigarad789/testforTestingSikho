@@ -1,0 +1,17 @@
+<template>
+    <lightning-card title="Upload Products CSV">
+        <div class="slds-p-around_medium">
+            <lightning-file-upload
+                label="Upload CSV File"
+                name="fileUploader"
+                accept=".csv"
+                onuploadfinished={handleUploadFinished}
+                record-id={recordId} >
+            </lightning-file-upload>
+
+            <template if:true={items.length}>
+                <c-my-cart items={items}></c-my-cart>
+            </template>
+        </div>
+    </lightning-card>
+</template>

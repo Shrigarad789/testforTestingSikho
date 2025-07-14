@@ -1,0 +1,33 @@
+<template>
+    <div class="slds-col slds-size_3-of-12 slds-p-horizontal_x-small">                    
+        <lightning-input type="text" class="inpFld" label="Name" data-type="input-field"
+            name="Name" value={optFormData.Name} required>
+        </lightning-input>                    
+        
+</div>
+<div class="slds-col slds-size_3-of-12 slds-p-horizontal_x-small">                    
+    <lightning-input type="text" class="inpFld" label="Phone" value={optFormData.Phone} data-type="input-field"
+        name="Phone" required>
+    </lightning-input>
+</div>
+<div class="slds-col slds-size_3-of-12 slds-p-horizontal_x-small">                    
+    <lightning-input type="text" class="inpFld" label="Description" value={optFormData.Description} data-type="input-field"
+        name="Description" required>
+    </lightning-input>
+</div>
+<div class="slds-col slds-size_4-of-12 slds-box slds-box_small slds-m-horizontal_xx-small">
+    
+</div>
+<lightning-card title="Contact">
+    <div class="slds-p-around_small">
+        <c-acc-contact-line data-name="line1" record-id={recordId}
+            onlinedata={handleChildData}></c-acc-contact-line>
+    </div>
+</lightning-card>
+
+<div class="slds-col_bump-left slds-text-align_center slds-p-horizontal_x-small slds-text-align_center">
+    <lightning-button variant="brand" label="Save" title="Save"
+        class="slds-m-left_x-small slds-p-right_xx-small" onclick={saveButtonAction}>
+    </lightning-button>
+</div>
+</template>

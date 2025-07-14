@@ -1,0 +1,114 @@
+<template>
+    <div class="container-wrapper slds-p-around_medium">
+        <!-- Header -->
+        <div class="slds-grid slds-grid_align-spread slds-m-bottom_medium">
+            <div class="cart-container">
+                <lightning-icon icon-name="utility:cart" size="large" alternative-text="Cart"></lightning-icon>
+                <template if:true={hasItemsInCart}>
+                    <span class="cart-badge">{cartItems.length}</span>
+                </template>
+            </div>
+
+            <div class="slds-m-left_medium">
+                <lightning-input type="file" accept=".csv" label="Upload CSV" onchange={handleFileChange}></lightning-input>
+            </div>
+        </div>
+
+        <!-- Search and Page Size -->
+        <div class="slds-grid slds-gutters slds-m-bottom_small search-controls">
+            <div class="slds-col slds-size_6-of-12">
+                <lightning-input
+                    type="search"
+                    placeholder="Search Products"
+                    variant="label-hidden"
+                    onchange={handleSearchChange}>
+                </lightning-input>
+            </div>
+            <div class="slds-col slds-size_6-of-12">
+                <lightning-combobox
+                    class="page-size-select"
+                    placeholder="Page Size"
+                    variant="label-hidden"
+                    value={pageSize}
+                    options={pageSizeOptions}
+                    onchange={handlePageSizeChange}>
+                </lightning-combobox>
+            </div>
+        </div>
+
+        <!-- Available Products Table -->
+        <lightning-card title="Available Products">
+            <div class="custom-table-header slds-grid slds-p-horizontal_medium slds-p-vertical_x-small slds-border_bottom">
+                <div class="slds-col slds-size_6-of-12"><strong>Name</strong></div>
+                <div class="slds-col slds-size_4-of-12 quantity-cell"><strong>Quantity</strong></div>
+                <div class="slds-col slds-size_2-of-12"></div>
+            </div>
+            <div class="slds-p-horizontal_medium slds-scrollable_y" style="max-height: 300px;">
+                <template if:true={paginatedProducts.length}>
+                    <template for:each={paginatedProducts} for:item="prod">
+                        <div key={prod.Id} class="slds-grid slds-p-vertical_x-small slds-border_bottom align-center">
+                            <div class="slds-col slds-size_6-of-12">{prod.Name}</div>
+                            <div class="slds-col slds-size_4-of-12 quantity-cell">{prod.Quantity__c}</div>
+                            <div class="slds-col slds-size_2-of-12">
+                                <lightning-button-icon icon-name="utility:add" alternative-text="Add" onclick={handleAddProduct} data-id={prod.Id} data-name={prod.Name}></lightning-button-icon>
+                            </div>
+                        </div>
+                    </template>
+                </template>
+                <template if:false={paginatedProducts.length}>
+                    <p class="slds-p-around_small">No products available.</p>
+                </template>
+            </div>
+
+            <!-- Pagination Controls -->
+            <div class="pagination-footer">
+                <lightning-button label="Previous" onclick={handlePreviousPage} disabled={isFirstPage}></lightning-button>
+                <span>Page {currentPage} of {totalPages}</span>
+                <lightning-button label="Next" onclick={handleNextPage} disabled={isLastPage}></lightning-button>
+            </div>
+        </lightning-card>
+
+        <!-- Cart Items Summary -->
+        <template if:true={cartItems.length}>
+            <template if:false={showCheckout}>
+                <h3 class="cart-title">📦 Detail Page Of Added Item</h3>
+                <lightning-card>
+                    <div class="slds-p-horizontal_medium">
+                        <template for:each={cartItems} for:item="item">
+                            <div key={item.Product_Name__c} class="slds-grid slds-grid_align-spread slds-m-bottom_x-small">
+                                <span>{item.Product_Name__c} — Qty: {item.Quantity__c}</span>
+                                <lightning-button-icon icon-name="utility:delete" alternative-text="Remove" onclick={handleRemoveItem} data-name={item.Product_Name__c}></lightning-button-icon>
+                            </div>
+                        </template>
+
+                        <div class="slds-m-top_medium slds-align_absolute-center">
+                            <lightning-button label="Add to Cart" variant="brand" onclick={handleAddToCart}></lightning-button>
+                        </div>
+                    </div>
+                </lightning-card>
+            </template>
+        </template>
+
+        <!-- Checkout Summary -->
+        <template if:true={showCheckout}>
+            <h3 class="cart-title">📜 Detail Page</h3>
+            <lightning-card>
+                <div class="slds-p-horizontal_medium">
+                    <template for:each={cartItems} for:item="item">
+                        <p key={item.Product_Name__c}>{item.Product_Name__c} — Qty: {item.Quantity__c}</p>
+                    </template>
+                    <p class="slds-m-top_medium"><strong>Total Quantity: {totalQuantity}</strong></p>
+                    <div class="slds-m-top_medium slds-align_absolute-center">
+                        <lightning-button label="CheckoutForm" variant="success" onclick={callCheckoutForm}></lightning-button>
+                        <lightning-button label="Back to Cart" variant="neutral" class="slds-m-left_small" onclick={handleBackToCart}></lightning-button>
+                    </div>
+                </div>
+            </lightning-card>
+        </template>
+
+        <!-- Checkout Form -->
+        <template if:true={showCheckoutForm}>
+            <c-mass-checkout-form onorderplaced={handleOrderPlaced}></c-mass-checkout-form>
+        </template>
+    </div>
+</template>

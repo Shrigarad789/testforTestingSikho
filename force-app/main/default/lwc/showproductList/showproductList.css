@@ -1,0 +1,21 @@
+/* Style for the search input */
+.search-input {
+  background-color: red !important; /* Apply red background to the input */
+  width: 100%;         /* Make input flexible and responsive */
+  max-width: 800px;    /* Limit the maximum width */
+  padding: 8px 12px;   /* Add padding inside for better spacing */
+  box-sizing: border-box; /* Ensure padding/border are part of the width */
+  border: 1px solid #ccc; /* Light border for the input */
+  border-radius: 4px; /* Rounded corners */
+}
+
+/* Optional: Style for focus to improve accessibility */
+.search-input:focus {
+  border-color: #0050d4;  /* Blue border on focus */
+  outline: none;           /* Remove default outline */
+  background-color: #f0f8ff; /* Light blue background on focus */
+}
+.custom-card {
+  background-color:yellow; 
+  border: 1px solid #e0e0e0; /* Optional: Add a border for styling */
+}

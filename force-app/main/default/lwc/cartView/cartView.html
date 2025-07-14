@@ -1,0 +1,23 @@
+<template>
+    <lightning-card title="🛒 Your Cart" icon-name="utility:cart">
+        <template if:true={cartItems.length}>
+            <div class="slds-p-around_medium">
+                <template for:each={cartItems} for:item="item">
+                    <div key={item.Id} class="slds-box slds-m-bottom_small">
+                        <p class="slds-text-heading_small">{item.Product__r.Name}</p>
+                        <p>Quantity: {item.Quantity__c}</p>
+                        <p>Price: ₹{item.Price__c}</p>
+                        <p>Total: ₹{item.Total__c}</p>
+                    </div>
+                </template>
+
+                <div class="slds-text-heading_medium slds-m-top_medium slds-text-align_right">
+                    Grand Total: ₹{totalAmount}
+                </div>
+            </div>
+        </template>
+        <template if:false={cartItems.length}>
+            <p class="slds-p-around_medium">Your cart is empty.</p>
+        </template>
+    </lightning-card>
+</template>

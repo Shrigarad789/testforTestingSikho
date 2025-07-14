@@ -1,0 +1,46 @@
+<template>
+    <!-- Header -->
+    <div class="slds-grid slds-align_absolute-center slds-p-around_small">
+        <div class="slds-text-heading_small slds-m-right_small">🛒 Shopping Cart</div>
+
+        <!-- Cart Icon -->
+        <button class="slds-button slds-button_icon cart-button slds-m-left_auto" onclick={toggleCart} title="View Cart">
+            <lightning-icon icon-name="utility:cart" size="medium" alternative-text="Cart"></lightning-icon>
+            <span class="cart-count">{cartCount}</span>
+        </button>
+    </div>
+
+    <!-- Checkout Form -->
+    <template if:true={showCheckoutForm}>
+        <c-checkout-form
+            cart-id={cartIdForCheckout}
+            total-amount={checkoutTotal}
+            onorderplaced={handleOrderPlaced}>
+        </c-checkout-form>
+    </template>
+
+    <!-- My Cart -->
+    <template if:true={showCart}>
+        <c-my-cart 
+            items={cartItems}
+            onremoveitem={handleRemoveItem}
+            oncheckoutstart={handleCheckoutStart}>
+        </c-my-cart>
+    </template>
+
+    <!-- Product List -->
+    <template if:false={showDetail}>
+        <c-product-list 
+            onproductselected={handleProductSelect}>
+        </c-product-list>
+    </template>
+
+    <!-- Product Detail -->
+    <template if:true={showDetail}>
+        <c-product-detail 
+            product={selectedProduct} 
+            onback={handleBack}
+            onaddedtocart={handleAddToCart}>
+        </c-product-detail>
+    </template>
+</template>

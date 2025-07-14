@@ -1,16 +1,16 @@
 import { LightningElement, track } from 'lwc';
 import createAccount from '@salesforce/apex/accountCreationControllerLwc.createAccount';
-import ACCOUNT_NAME from '@salesforce/schema/Contact.LastName';
-import ACCOUNT_PHONE from '@salesforce/schema/Contact.Phone';
+import ACCOUNT_NAME from '@salesforce/schema/Account.Name';
+import ACCOUNT_TYPE from '@salesforce/schema/Account.Type';
+import ACCOUNT_PHONE from '@salesforce/schema/Account.Phone';
 import {ShowToastEvent} from 'lightning/platformShowToastEvent';
 
 export default class AccountCreationLwc extends LightningElement {
-    @api recordId;
 @track accountid;
 @track error;    
 @track accountRecord={
     Name:ACCOUNT_NAME,
-   
+    Type:ACCOUNT_TYPE,
     Phone:ACCOUNT_PHONE
 };
 
@@ -19,7 +19,10 @@ handleNameChange(event){
    //window.console.log(this.accountRecord.Name);
  }
 
- 
+ handleTypeChange(event){
+    this.accountRecord.Type = event.target.value;
+    //window.console.log(this.accountRecord.Type);
+  }
 
   handlePhoneChange(event){
     this.accountRecord.Phone = event.target.value;
@@ -37,7 +40,7 @@ handleNameChange(event){
         
         const toastEvent = new ShowToastEvent({
           title:'Success!',
-          message:'Contact Record is created successfully',
+          message:'Account Record is created successfully',
           variant:'success'
         });
         this.dispatchEvent(toastEvent);

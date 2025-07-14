@@ -1,0 +1,78 @@
+<template>
+    <div class="container">
+        <div class="controls">
+            <lightning-input type="search" label="Search" value={searchKey} onchange={handleSearch}></lightning-input>
+            <lightning-combobox
+                label="Page Size"
+                value={pageSize}
+                options={pageSizeOptions}
+                onchange={handlePageSizeChange}>
+            </lightning-combobox>
+        </div>
+
+        <div class="scroll-table">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th onclick={sortByName}>Name
+                            <template if:true={isSortedBy.Name}>
+                                <span>{sortDirectionSymbol}</span>
+                            </template>
+                        </th>
+                        <!-- <th onclick={sortByCode}>Product Code
+                            <template if:true={isSortedBy.ProductCode}>
+                                <span>{sortDirectionSymbol}</span>
+                            </template>
+                        </th> -->
+
+                        <th>
+                            Product Code
+                        </th>
+                        
+                        <th onclick={sortByPrice}>Price
+                            <template if:true={isSortedBy.Price_c__c}>
+                                <span>{sortDirectionSymbol}</span>
+                            </template>
+                        </th>
+                        <th onclick={sortByType}>Product Type
+                            <template if:true={isSortedBy.Product_Type__c}>
+                                <span>{sortDirectionSymbol}</span>
+                            </template>
+                        </th>
+                        <th onclick={sortByCreatedDate}>Created Date
+                            <template if:true={isSortedBy.CreatedDate}>
+                                <span>{sortDirectionSymbol}</span>
+                            </template>
+                        </th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={paginatedProducts} for:item="product">
+                        <tr key={product.Id}>
+                            <td>{product.Name}</td>
+                            <td>{product.ProductCode}</td>
+                            <td>{product.Price_c__c}</td>
+                            <td>{product.Product_Type__c}</td>
+                            <td>{product.CreatedDate}</td>
+                            <td>
+                                <lightning-button 
+                                    label="View" 
+                                    data-id={product.Id} 
+                                    onclick={handleViewProduct} 
+                                    variant="brand">
+                                </lightning-button>
+                            </td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="pagination">
+            <lightning-button label="Previous" onclick={handlePrevious} disabled={isFirstPage}></lightning-button>
+            <span>Page {page} of {totalPages}</span>
+            <lightning-button label="Next" onclick={handleNext} disabled={isLastPage}></lightning-button>
+        </div>
+    </div>
+</template>

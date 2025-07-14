@@ -1,0 +1,8 @@
+/* createContract.css */
+.lightning-input_label {
+    font-weight: bold;
+}
+
+.button-container {
+    text-align: right; /* Aligns the button to the right */
+}

@@ -1,0 +1,14 @@
+<template>
+    <lightning-input name="Name" value= {newItem} label = "Item Name" onchange={handleChange}>
+    </lightning-input>
+
+    <lightning-button name="addItem" label="Add Item" onclick={add}>
+    </lightning-button>
+
+    <template for:each={itemlist} for:item="item" for:index="i">
+    <div key={item.i}>
+        {item}
+    </div>
+    </template>
+
+</template>

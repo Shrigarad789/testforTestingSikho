@@ -1,0 +1,26 @@
+<template>
+    <lightning-card title="Upload Exce File (.xlsx)">
+        <div class="slds-p-around_medium">
+            <lightning-input 
+                type="file" 
+                label="Select Excel file (.xlsx)" 
+                accept=".xlsx" 
+                onchange={handleFileChange}>
+            </lightning-input>
+
+            <lightning-button 
+                label="Add to Cart" 
+                onclick={handleAddToCart} 
+                class="slds-m-top_medium" 
+                variant="brand">
+            </lightning-button>
+
+            <lightning-button 
+                label="Submit " 
+                onclick={processExcel} 
+                class="slds-m-top_medium"
+                variant="success">
+            </lightning-button>
+        </div>
+    </lightning-card>
+</template>
